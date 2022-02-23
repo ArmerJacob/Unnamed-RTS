@@ -108,8 +108,8 @@ MonoBehaviour:
     y: 30
     width: 1920
     height: 987
-  m_MinSize: {x: 917, y: 271}
-  m_MaxSize: {x: 22012, y: 10021}
+  m_MinSize: {x: 913, y: 271}
+  m_MaxSize: {x: 22008, y: 10021}
   vertical: 0
   controlID: 45
 --- !u!114 &6
@@ -157,8 +157,8 @@ MonoBehaviour:
     y: 0
     width: 204
     height: 987
-  m_MinSize: {x: 204, y: 221}
-  m_MaxSize: {x: 4004, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 13}
   m_Panes:
   - {fileID: 13}
@@ -303,7 +303,7 @@ MonoBehaviour:
     m_HSlider: 0
     m_VSlider: 0
     m_IgnoreScrollWheelUntilClicked: 0
-    m_EnableMouseInput: 0
+    m_EnableMouseInput: 1
     m_EnableSliderZoom: 0
     m_UniformScale: 1
     m_UpDirection: 1
@@ -365,9 +365,9 @@ MonoBehaviour:
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -0.2252583, y: -14.281908, z: 1.7876383}
+    m_Target: {x: -0.12517214, y: -14.281908, z: 1.7915134}
     speed: 2
-    m_Value: {x: -0.2252583, y: -14.281908, z: 1.7876383}
+    m_Value: {x: -0.12517214, y: -14.281908, z: 1.7915134}
   m_RenderMode: 0
   m_ValidateTrueMetals: 0
   m_SceneViewState:
@@ -390,13 +390,13 @@ MonoBehaviour:
       speed: 2
       m_Value: 0
   m_Rotation:
-    m_Target: {x: -0.40576038, y: 0.018361151, z: -0.008155754, w: -0.9137587}
+    m_Target: {x: -0.40577212, y: 0.01699049, z: -0.0075471043, w: -0.91378516}
     speed: 2
-    m_Value: {x: -0.40576035, y: 0.01836115, z: -0.008155754, w: -0.91375864}
+    m_Value: {x: -0.40577215, y: 0.016990492, z: -0.0075471047, w: -0.9137852}
   m_Size:
-    m_Target: 49.78797
+    m_Target: 56.357533
     speed: 2
-    m_Value: 49.78797
+    m_Value: 56.357533
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -435,9 +435,9 @@ MonoBehaviour:
     height: 966
   m_TreeViewState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 
-    m_LastClickedID: 0
-    m_ExpandedIDs: 1afcffff00000000
+    m_SelectedIDs: 1afcffff
+    m_LastClickedID: -998
+    m_ExpandedIDs: aaf9feff1afcffff00000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -504,7 +504,7 @@ MonoBehaviour:
   m_LastFolders:
   - Assets/Prefabs
   m_LastFoldersGridSize: -1
-  m_LastProjectPath: C:\Users\jake\Documents\GitHub\DungeonBuilder\RTS
+  m_LastProjectPath: C:\Users\jake\Documents\GitHub\Unnamed-RTS\RTS
   m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
@@ -565,7 +565,7 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 0
+    m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: 16f2000000000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
