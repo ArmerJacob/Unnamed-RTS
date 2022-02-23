@@ -25,14 +25,14 @@ public class EntityManager : MonoBehaviour {
 
         if (Input.GetMouseButtonDown(1))
         {
-            CheckIfUnitShouldMove();
+            CheclForUnitOrders();
         }
 
     }
 
     void CreateUnit()
     {
-        if (Input.GetKeyUp(KeyCode.Space))
+        if (Input.GetKeyUp(KeyCode.V))
         {
             // Instantiate(unit);
             //Creates unit where the mouse it on space press
@@ -71,7 +71,7 @@ public class EntityManager : MonoBehaviour {
 
     }
 
-    void CheckIfUnitShouldMove()
+    void CheclForUnitOrders()
     {
 
         //Moves to target if object is listening for order
