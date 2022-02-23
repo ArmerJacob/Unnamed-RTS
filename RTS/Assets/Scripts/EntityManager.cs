@@ -40,7 +40,7 @@ public class EntityManager : MonoBehaviour {
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit))
             {
-                units.Add(Instantiate(unit,hit.point, new Quaternion()));
+                units.Add(Instantiate(unit,new Vector3(hit.point.x + offSet, hit.point.y + offSet, hit.point.z + offSet), new Quaternion()));
             }
         }
     }
