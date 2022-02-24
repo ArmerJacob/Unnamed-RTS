@@ -51,10 +51,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\CameraController.cs" />
-     <Compile Include="Assets\Scripts\EntityController.cs" />
-     <Compile Include="Assets\Scripts\EntityManager.cs" />
-     <Compile Include="Assets\Scripts\EntityMovement.cs" />
+     <Compile Include="Assets\Scripts\Controllers\CameraController.cs" />
+     <Compile Include="Assets\Scripts\Controllers\EntityController.cs" />
+     <Compile Include="Assets\Scripts\Controllers\EntityMovement.cs" />
+     <Compile Include="Assets\Scripts\Managers\ControlManager.cs" />
+     <Compile Include="Assets\Scripts\Managers\EntityManager.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2017.1.5f1/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>

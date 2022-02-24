@@ -17,23 +17,11 @@ public class EntityManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        CreateUnit();
-        if (Input.GetMouseButtonDown(0))
-        {
-            CheckIfUnitSelected();
-        }
-
-        if (Input.GetMouseButtonDown(1))
-        {
-            CheclForUnitOrders();
-        }
 
     }
 
-    void CreateUnit()
+    public void CreateUnit()
     {
-        if (Input.GetKeyUp(KeyCode.V))
-        {
             // Instantiate(unit);
             //Creates unit where the mouse it on space press
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -42,10 +30,10 @@ public class EntityManager : MonoBehaviour {
             {
                 units.Add(Instantiate(unit,new Vector3(hit.point.x + offSet, hit.point.y + offSet, hit.point.z + offSet), new Quaternion()));
             }
-        }
+       
     }
 
-    void CheckIfUnitSelected()
+    public void CheckIfUnitSelected()
     {
 
             //First ray cast determines if this object has been hit
@@ -71,7 +59,7 @@ public class EntityManager : MonoBehaviour {
 
     }
 
-    void CheclForUnitOrders()
+    public void CheclForUnitOrders()
     {
 
         //Moves to target if object is listening for order
