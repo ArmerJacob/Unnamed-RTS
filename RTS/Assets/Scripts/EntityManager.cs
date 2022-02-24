@@ -25,14 +25,14 @@ public class EntityManager : MonoBehaviour {
 
         if (Input.GetMouseButtonDown(1))
         {
-            CheckIfUnitShouldMove();
+            CheclForUnitOrders();
         }
 
     }
 
     void CreateUnit()
     {
-        if (Input.GetKeyUp(KeyCode.Space))
+        if (Input.GetKeyUp(KeyCode.V))
         {
             // Instantiate(unit);
             //Creates unit where the mouse it on space press
@@ -40,7 +40,7 @@ public class EntityManager : MonoBehaviour {
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit))
             {
-                units.Add(Instantiate(unit,hit.point, new Quaternion()));
+                units.Add(Instantiate(unit,new Vector3(hit.point.x + offSet, hit.point.y + offSet, hit.point.z + offSet), new Quaternion()));
             }
         }
     }
@@ -71,7 +71,7 @@ public class EntityManager : MonoBehaviour {
 
     }
 
-    void CheckIfUnitShouldMove()
+    void CheclForUnitOrders()
     {
 
         //Moves to target if object is listening for order
