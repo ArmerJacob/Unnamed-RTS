@@ -2866,6 +2866,7 @@ MonoBehaviour:
   speed: 0.05
   offSet: 0.5
   agent: {fileID: 195899163845638508}
+  arrow: {fileID: 8696852021130833999, guid: 74ab937238376d54d832b03034c648c6, type: 3}
 --- !u!195 &195899163845638508
 NavMeshAgent:
   m_ObjectHideFlags: 0

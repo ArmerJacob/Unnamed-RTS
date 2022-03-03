@@ -12,10 +12,13 @@ public class EntityController : MonoBehaviour {
     Vector3 target;
     Assets.Scripts.EntityMovement movement;
     public NavMeshAgent agent;
+
+
     // Use this for initialization
     void Start () {
         movement = new Assets.Scripts.EntityMovement();
         target = new Vector3(outOfBounds, 0, outOfBounds);
+
     }
 	
 	// Update is called once per frame
@@ -30,6 +33,7 @@ public class EntityController : MonoBehaviour {
             isMoving = false;
             target.x = outOfBounds;
             target.z = outOfBounds;
+           // Destroy(privateArrow);
 
         }
     }
@@ -46,6 +50,7 @@ public class EntityController : MonoBehaviour {
 
     public void setTarget(Vector3 pTarget)
     {
+       // Destroy(privateArrow);
         agent.SetDestination(pTarget);
         target = pTarget;
     }

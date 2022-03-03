@@ -10,6 +10,7 @@ public class EntityManager : MonoBehaviour {
     public bool isMoving;
     public List<GameObject> units = new List<GameObject>();
     public GameObject unit;
+    public GameObject arrow;
 
     // Use this for initialization
     void Start () {
@@ -38,6 +39,7 @@ public class EntityManager : MonoBehaviour {
 
             //First ray cast determines if this object has been hit
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        bool hitUnit = false;
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit))
             {
@@ -47,15 +49,19 @@ public class EntityManager : MonoBehaviour {
                 {
 
                   units[i].GetComponent<EntityController>().setAlert(true);
+                    hitUnit = true;
 
                 }
-                else
+            }
+            if(!hitUnit)
+            {
+                for (int i = 0; i < units.Count; i++)
                 {
                     units[i].GetComponent<EntityController>().setAlert(false);
                 }
             }
 
-            }
+        }
 
     }
 
@@ -73,11 +79,12 @@ public class EntityManager : MonoBehaviour {
                 if (units[i].GetComponent<EntityController>().getAlert() == true)
                 {
                     units[i].GetComponent<EntityController>().setTarget(hit.point);
-                    units[i].GetComponent<EntityController>().setAlert(false);
                     units[i].GetComponent<EntityController>().setMoving(true);
+
                 }
             }
-            }
+            Instantiate(arrow, new Vector3(hit.point.x, hit.point.y + 2, hit.point.z), new Quaternion());
+        }
     }
     
 }
