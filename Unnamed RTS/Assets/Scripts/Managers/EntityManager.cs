@@ -49,7 +49,7 @@ public class EntityManager : MonoBehaviour {
                   units[i].GetComponent<EntityController>().setAlert(true);
 
                 }
-                else if (units[i].GetComponent<EntityController>().getAlert() == true && units[i].GetComponent<EntityController>().getMoving() == false)
+                else
                 {
                     units[i].GetComponent<EntityController>().setAlert(false);
                 }

@@ -53,11 +53,11 @@
     <UnityVersion>2021.2.13f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\Controllers\EntityController.cs" />
-    <Compile Include="Assets\Scripts\Managers\ControlManager.cs" />
     <Compile Include="Assets\Scripts\Controllers\EntityMovement.cs" />
-    <Compile Include="Assets\Scripts\Controllers\CameraController.cs" />
+    <Compile Include="Assets\Scripts\Managers\ControlManager.cs" />
     <Compile Include="Assets\Scripts\Managers\EntityManager.cs" />
+    <Compile Include="Assets\Scripts\Controllers\EntityController.cs" />
+    <Compile Include="Assets\Scripts\Controllers\CameraController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
@@ -746,13 +746,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="NavMeshComponents.csproj">
-      <Project>{C45764B6-0DC9-7AC5-7A87-5D0F3E3B0730}</Project>
-      <Name>NavMeshComponents</Name>
-    </ProjectReference>
     <ProjectReference Include="NavMeshComponentsEditor.csproj">
       <Project>{92DA6F47-92C3-53D0-B4EE-0393B728A87D}</Project>
       <Name>NavMeshComponentsEditor</Name>
+    </ProjectReference>
+    <ProjectReference Include="NavMeshComponents.csproj">
+      <Project>{C45764B6-0DC9-7AC5-7A87-5D0F3E3B0730}</Project>
+      <Name>NavMeshComponents</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

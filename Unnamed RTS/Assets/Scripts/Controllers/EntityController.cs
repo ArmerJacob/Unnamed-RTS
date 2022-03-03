@@ -20,13 +20,10 @@ public class EntityController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        //if (isMoving == true && target.x != outOfBounds && target.z != outOfBounds)
-        //{
-        //    moveToTarget();
-        //}
+        CheckIfAtTarget();
     }
 
-    void moveToTarget()
+    void CheckIfAtTarget()
     {
         if(target.x > transform.position.x - offSet && target.x < transform.position.x + offSet && target.z > transform.position.z - offSet && target.z < transform.position.z + offSet)
         {
@@ -34,11 +31,6 @@ public class EntityController : MonoBehaviour {
             target.x = outOfBounds;
             target.z = outOfBounds;
 
-        }
-        else
-        {
-            //Add path finding here and have MoveEntity() Take an array of points instead of a single point.
-            transform.position = movement.MoveEntity(target, transform, offSet, speed);
         }
     }
 
@@ -55,6 +47,7 @@ public class EntityController : MonoBehaviour {
     public void setTarget(Vector3 pTarget)
     {
         agent.SetDestination(pTarget);
+        target = pTarget;
     }
 
     public Vector3 getTarget()

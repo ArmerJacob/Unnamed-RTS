@@ -7,7 +7,7 @@ public class CameraController : MonoBehaviour {
     public float rotSpeed = 0.05f;
     private float startSpeed = 0.1f;
     private float incriment = 0.01f;
-    public float ZoomSpeed = 0.25f;
+    public float ZoomSpeed = 0.5F;
     public float CameraHeight = 20f;
 	// Use this for initialization
 	void Start () {
