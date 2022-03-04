@@ -19,19 +19,21 @@ public class ControlManager : MonoBehaviour {
             entityManager.GetComponent<EntityManager>().CreateUnit();
          }
 
-        if (Input.GetMouseButtonDown(0))
-        {
-            bool multiSelect;
-            if (Input.GetKey(KeyCode.LeftShift))
-            {
-                multiSelect = true;
-            }
-            else
-            {
-                multiSelect = false;
-            }
-            entityManager.GetComponent<EntityManager>().CheckIfUnitSelected(multiSelect);
-        }
+        entityManager.GetComponent<EntityManager>().SelectionBoxInputs();
+
+        //if (Input.GetMouseButtonUp(0))
+        //{
+        //    bool multiSelect;
+        //    if (Input.GetKey(KeyCode.LeftShift))
+        //    {
+        //        multiSelect = true;
+        //    }
+        //    else
+        //    {
+        //        multiSelect = false;
+        //    }
+        //    entityManager.GetComponent<EntityManager>().CheckIfUnitSelected(multiSelect);
+        //}
 
 
         if (Input.GetMouseButtonDown(1))
@@ -39,4 +41,6 @@ public class ControlManager : MonoBehaviour {
             entityManager.GetComponent<EntityManager>().CheclForUnitOrders();
         }
     }
+
+
 }
