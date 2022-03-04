@@ -6,11 +6,19 @@ public class EntityManager : MonoBehaviour {
     public float outOfBounds = 9999;
     public float speed = 0.05f;
     public float offSet = 0.5f;
+    public float dragDelay = 0.1f;
     public bool isAlert;
     public bool isMoving;
     public List<GameObject> units = new List<GameObject>();
     public GameObject unit;
-
+    public GameObject arrow;
+    [SerializeField]
+    public Camera Camera;
+    [SerializeField]
+    public RectTransform SelectionBox;
+    private Vector2 StartMousePosition;
+    private float MouseDownTime;
+    public LayerMask unitLayers;
     // Use this for initialization
     void Start () {
     }
@@ -33,30 +41,12 @@ public class EntityManager : MonoBehaviour {
        
     }
 
-    public void CheckIfUnitSelected()
+    public void SetAllUnits(bool pStatus)
     {
-
-            //First ray cast determines if this object has been hit
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-            if (Physics.Raycast(ray, out hit))
-            {
-            for (int i = 0; i < units.Count; i++)
-            {
-                if (hit.transform.position == units[i].transform.position)
-                {
-
-                  units[i].GetComponent<EntityController>().setAlert(true);
-
-                }
-                else
-                {
-                    units[i].GetComponent<EntityController>().setAlert(false);
-                }
-            }
-
-            }
-
+        for (int i = 0; i < units.Count; i++)
+        {
+            units[i].GetComponent<EntityController>().setAlert(pStatus);
+        }
     }
 
     public void CheclForUnitOrders()
@@ -73,11 +63,93 @@ public class EntityManager : MonoBehaviour {
                 if (units[i].GetComponent<EntityController>().getAlert() == true)
                 {
                     units[i].GetComponent<EntityController>().setTarget(hit.point);
-                    units[i].GetComponent<EntityController>().setAlert(false);
                     units[i].GetComponent<EntityController>().setMoving(true);
+
                 }
             }
-            }
+            Instantiate(arrow, new Vector3(hit.point.x, hit.point.y + 2, hit.point.z), new Quaternion());
+        }
     }
-    
+
+    public void CheckIfUnitInBox(Bounds Bound)
+    {
+        for(int i = 0; i < units.Count; i++)
+        {
+            if(UnitsInSelectionbox(Camera.WorldToScreenPoint(units[i].transform.position), Bound))
+            {
+                units[i].GetComponent<EntityController>().setAlert(true);
+            }
+            else
+            {
+                units[i].GetComponent<EntityController>().setAlert(false);
+            }
+        }
+    }
+
+    public bool UnitsInSelectionbox(Vector2 pPosition, Bounds Bound)
+    {
+        return pPosition.x > Bound.min.x && pPosition.x < Bound.max.x && pPosition.y > Bound.min.y && pPosition.y < Bound.max.y;
+    }
+
+    public void SelectionBoxInputs()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            SelectionBox.sizeDelta = Vector2.zero;
+            SelectionBox.gameObject.SetActive(true);
+            StartMousePosition = Input.mousePosition;
+            MouseDownTime = Time.time;
+        }
+        else if (Input.GetMouseButton(0) && MouseDownTime + dragDelay < Time.time)
+        {
+            ResizeSelectionBox();
+        }
+        else if (Input.GetMouseButtonUp(0))
+        {
+            SelectionBox.sizeDelta = Vector2.zero;
+            SelectionBox.gameObject.SetActive(false);
+
+            if (Physics.Raycast(Camera.ScreenPointToRay(Input.mousePosition), out RaycastHit hit) && hit.collider.TryGetComponent<EntityController>(out EntityController entity))
+            {
+                if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
+                {
+                    if(entity.getAlert())
+                    {
+                        entity.setAlert(false);
+                    }
+                    else
+                    {
+                        entity.setAlert(true);
+                    }
+                }
+                else
+                {
+                    SetAllUnits(false);
+                    entity.setAlert(true);
+                }
+            }
+            else if(MouseDownTime + dragDelay > Time.time)
+            {
+                SetAllUnits(false);
+            }
+
+
+            MouseDownTime = 0;
+        }
+    }
+
+    private void ResizeSelectionBox()
+    {
+        float width = Input.mousePosition.x - StartMousePosition.x;
+        float height = Input.mousePosition.y - StartMousePosition.y;
+
+        SelectionBox.anchoredPosition = new Vector2(StartMousePosition.x, StartMousePosition.y) + new Vector2(width / 2, height / 2);
+        SelectionBox.sizeDelta = new Vector2(Mathf.Abs(width), Mathf.Abs(height));
+
+        Bounds bounds = new Bounds(SelectionBox.anchoredPosition, SelectionBox.sizeDelta);
+
+        CheckIfUnitInBox(bounds);
+    }
+
+
 }
