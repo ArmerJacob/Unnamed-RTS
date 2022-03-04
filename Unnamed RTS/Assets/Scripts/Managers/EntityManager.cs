@@ -34,12 +34,12 @@ public class EntityManager : MonoBehaviour {
        
     }
 
-    public void CheckIfUnitSelected()
+    public void CheckIfUnitSelected(bool pMultiSelect)
     {
 
             //First ray cast determines if this object has been hit
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        bool hitUnit = false;
+        int ignore = -1;
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit))
             {
@@ -49,15 +49,17 @@ public class EntityManager : MonoBehaviour {
                 {
 
                   units[i].GetComponent<EntityController>().setAlert(true);
-                    hitUnit = true;
-
+                    ignore = i;
                 }
             }
-            if(!hitUnit)
+            if(pMultiSelect == false)
             {
                 for (int i = 0; i < units.Count; i++)
                 {
-                    units[i].GetComponent<EntityController>().setAlert(false);
+                    if (i != ignore)
+                    {
+                        units[i].GetComponent<EntityController>().setAlert(false);
+                    }
                 }
             }
 
