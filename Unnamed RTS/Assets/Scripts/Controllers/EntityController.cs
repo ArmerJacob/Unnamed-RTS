@@ -15,6 +15,9 @@ public class EntityController : MonoBehaviour {
     public NavMeshAgent agent;
     public GameObject Ring;
     private GameObject ringObject;
+    public bool IsGhost; // Is the object a ghost
+    public Material GhostMat;
+
 
 
     // Use this for initialization
@@ -27,7 +30,19 @@ public class EntityController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         CheckIfAtTarget();
-        ringObject.transform.position = new Vector3(this.transform.position.x, this.transform.position.y + 0.02f, this.transform.position.z);
+        if(isAlert == true)
+        {
+            ringObject.transform.position = new Vector3(this.transform.position.x, this.transform.position.y + 0.02f, this.transform.position.z);
+        }
+        
+
+    }
+
+    void FixedUpdate() { // 0.02s 
+        if (IsGhost)
+        {
+            UpdateGhostPosition();
+        }
     }
 
     void CheckIfAtTarget()
@@ -82,5 +97,26 @@ public class EntityController : MonoBehaviour {
     public bool getMoving()
     {
         return isMoving;
+    }
+
+    public bool getGhost()
+    {
+        return IsGhost;
+    }
+
+    public void setGhost(bool pStatus)
+    {
+        IsGhost = pStatus;
+        this.GetComponent<MeshRenderer>().material = GhostMat;
+    }
+
+    public void UpdateGhostPosition()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit))
+        {
+            this.transform.position = new Vector3(hit.point.x + offSet, hit.point.y + offSet, hit.point.z + offSet);
+        }
     }
 }

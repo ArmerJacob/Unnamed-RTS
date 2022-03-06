@@ -40,7 +40,12 @@ public class ControlManager : MonoBehaviour {
         {
             entityManager.GetComponent<EntityManager>().CheclForUnitOrders();
         }
-    }
+        if (Input.GetKeyUp(KeyCode.B))
+        {
+            entityManager.GetComponent<EntityManager>().CreateUnit(Input.mousePosition, 0, true);
+        }
 
+    }
+ 
 
 }

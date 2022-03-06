@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class EntityManager : MonoBehaviour {
     public float outOfBounds = 9999;
@@ -19,26 +20,28 @@ public class EntityManager : MonoBehaviour {
     private Vector2 StartMousePosition;
     private float MouseDownTime;
     public LayerMask unitLayers;
+    public GameObject[] AvailableObjects;
     // Use this for initialization
-    void Start () {
+    void Start() {
+        // replace with dynamic population of selective army/building choices 
+        //AvailableObjects = new GameObject[2];
     }
-	
-	// Update is called once per frame
-	void Update () {
 
+    // Update is called once per frame
+    void Update() {
     }
 
     public void CreateUnit()
     {
-            // Instantiate(unit);
-            //Creates unit where the mouse it on space press
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-            if (Physics.Raycast(ray, out hit))
-            {
-                units.Add(Instantiate(unit,new Vector3(hit.point.x + offSet, hit.point.y + offSet, hit.point.z + offSet), new Quaternion()));
-            }
-       
+        // Instantiate(unit);
+        //Creates unit where the mouse it on space press
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit))
+        {
+            units.Add(Instantiate(unit, new Vector3(hit.point.x + offSet, hit.point.y + offSet, hit.point.z + offSet), new Quaternion()));
+        }
+
     }
 
     public void SetAllUnits(bool pStatus)
@@ -54,10 +57,10 @@ public class EntityManager : MonoBehaviour {
 
         //Moves to target if object is listening for order
 
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-            if (Physics.Raycast(ray, out hit))
-            {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit))
+        {
             for (int i = 0; i < units.Count; i++)
             {
                 if (units[i].GetComponent<EntityController>().getAlert() == true)
@@ -73,9 +76,9 @@ public class EntityManager : MonoBehaviour {
 
     public void CheckIfUnitInBox(Bounds Bound)
     {
-        for(int i = 0; i < units.Count; i++)
+        for (int i = 0; i < units.Count; i++)
         {
-            if(UnitsInSelectionbox(Camera.WorldToScreenPoint(units[i].transform.position), Bound))
+            if (UnitsInSelectionbox(Camera.WorldToScreenPoint(units[i].transform.position), Bound))
             {
                 units[i].GetComponent<EntityController>().setAlert(true);
             }
@@ -113,7 +116,7 @@ public class EntityManager : MonoBehaviour {
             {
                 if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
                 {
-                    if(entity.getAlert())
+                    if (entity.getAlert())
                     {
                         entity.setAlert(false);
                     }
@@ -128,7 +131,7 @@ public class EntityManager : MonoBehaviour {
                     entity.setAlert(true);
                 }
             }
-            else if(MouseDownTime + dragDelay > Time.time)
+            else if (MouseDownTime + dragDelay > Time.time)
             {
                 SetAllUnits(false);
             }
@@ -151,5 +154,42 @@ public class EntityManager : MonoBehaviour {
         CheckIfUnitInBox(bounds);
     }
 
+    public void DestroyUnit(GameObject pGameObject)
+    {
+        if (units.Contains(pGameObject))
+        {
+            units.Remove(pGameObject);
+            Destroy(pGameObject);
+        }
+        else
+        {
+            throw new Exception("Object Not in EntityManager List");
+        }
+
+    }
+
+    public void CreateUnit(Vector3 pPosition, int pObjectiveType)
+    {
+        // Instantiate(unit) + look into the creation of roation to be set. Direction of camera, to face player or rotation of building? Or inherent from parent ie building
+        units.Add(Instantiate(AvailableObjects[pObjectiveType], pPosition, new Quaternion()));
+
+    }
+
+    public void CreateUnit(Vector3 pPosition, int pObjectiveType, bool pisGhost)
+    {
+        // Instantiate(unit) + look into the creation of roation to be set. Direction of camera, to face player or rotation of building? Or inherent from parent ie building
+        units.Add(Instantiate(AvailableObjects[pObjectiveType], pPosition, new Quaternion()));
+        units[units.Count-1].GetComponent<EntityController>().setGhost(pisGhost);
+
+    }
+
 
 }
+
+
+
+//when unit is selected to build ie button press B
+// spawn ghost with create unit
+// track mouse movement till left mouse click
+// destory unit
+// create unit

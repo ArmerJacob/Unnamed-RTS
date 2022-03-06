@@ -1152,6 +1152,7 @@ MonoBehaviour:
   outOfBounds: 9999
   speed: 0.05
   offSet: 0.5
+  dragDelay: 0.1
   isAlert: 0
   isMoving: 0
   units: []
@@ -1159,6 +1160,12 @@ MonoBehaviour:
   arrow: {fileID: 1061995264792285318, guid: 890a9ed7d7711884686ca840531b8a74, type: 3}
   Camera: {fileID: 1568239142}
   SelectionBox: {fileID: 1232080834}
+  unitLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  AvailableObjects:
+  - {fileID: 1402856155884158, guid: 0fff6c730e75ea847a0784ed465d2708, type: 3}
+  - {fileID: 1982817346054158, guid: 7875644b81502224bbf531147988f922, type: 3}
 --- !u!1 &1641864423
 GameObject:
   m_ObjectHideFlags: 0
