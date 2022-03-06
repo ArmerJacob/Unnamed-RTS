@@ -27,7 +27,10 @@ public class EntityController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         CheckIfAtTarget();
-        ringObject.transform.position = new Vector3(this.transform.position.x, this.transform.position.y + 0.02f, this.transform.position.z);
+        if (isAlert == true)
+        {
+            ringObject.transform.position = new Vector3(this.transform.position.x, this.transform.position.y + 0.02f, this.transform.position.z);
+        }
     }
 
     void CheckIfAtTarget()
